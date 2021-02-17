@@ -1,0 +1,36 @@
+
+Login to machine:
+<right click and choose terminal>
+#this is your host machine (ubuntu 18.04)
+
+$sudo su
+$cd
+$virtualbox
+
+
+start n1, n2 (double click on machines)
+once machine is up, in n1 double click on terminal <left>
+
+on n1:
+$cd /usr/local/hadoop
+$sbin/start-dfs.sh
+[#this starts hadoop's distributed file system ie hdfs]
+
+on n2:
+cd /usr/local/hadoop
+sbin/star-yarn.sh
+[#this starts hadoop's yarn layer]
+
+on n1:
+zeppelin-daemon.sh start
+
+access zeppelin
+http://n1:8085
+
+[note** you can look in /usr/local/zeppelin/conf and in zeppelin-env.cmd and zeppelin-site.xml,
+        where port is specified as 8085 for zeppelin]
+
+Access other UIs.
+namenode UI : http://n1:50070
+yarn UI : http://n2:8088
+spark UI : http://n1:4040 (only when spark application are running via zeppelin/cli/ide etc)

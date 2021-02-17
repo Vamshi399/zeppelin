@@ -1,0 +1,109 @@
+Using Spark Interpreter:
+--------------------
+Using Scala:
+val x = sc.textFile("I:\\GitContent\\Datasets\\Datasets\\cv000_29416.txt")
+val y = x.map(n => n.toUpperCase())
+val z = y.filter(n => n.contains("IS"))
+z.collect()
+
+z.count()
+
+z.take(15).foreach(println)
+
+val a = z.take(1).flatMap(n => n.split(" "))
+a.take(50).foreach(println)
+
+------------------
+val l = List("Hello","cool","winter","summer","winter","wool","cold")
+val m = sc.parallelize(l)
+val n = m.map(n => n.toUpperCase())
+val o = n.filter(n => n.startsWith("W"))
+val p = o.flatMap(n => n.split(""))
+p.collect()
+
+-----------------
+For other examples:
+Refer: 
+https://github.com/ajaykuma/BigData_HESS/tree/main/Spark_n_Scala/SparkApplicationBasicExamples/For_windows_setup/MySparkApps/src/main/scala
+================================
+
+Using shell interpreter
+#if windows
+%sh
+dir/p
+
+%sh
+type nul > test1.txt
+notepad test1.txt
+
+#if linux ( for ex : lab machines)
+%sh
+ls Datasets-master
+
+%sh
+ls /usr/local/hadoop/logs
+
+#if on machines where we have hadoop cluster running
+%sh
+hdfs dfs -mkdir /mydata
+hdfs dfs -put /usr/local/hadoop/logs/*.log /mydata
+hdfs dfs -put Datasets-master /mydata
+
+=============================
+Using Python interpreter
+
+%python
+import pandas as pd
+myfile = pd.read_csv("I:\GitContent\Datasets\Datasets\Bank_full.csv")
+
+%python
+type(myfile)
+
+%python
+myfile.columns
+
+%python
+myfile.index
+
+%python
+myfile.head()
+
+%python
+myfile.describe()
+
+%python
+myfile[myfile.serNo < 10]
+
+%python
+myfile[(myfile.serNo < 10) & (myfile.job == 'management')]
+
+For more examples:
+https://github.com/ajaykuma/PythonTests/blob/master/Pandas/Test39p.py
+https://github.com/ajaykuma/PythonTests/blob/master/Pandas/Test40p.py
+https://github.com/ajaykuma/PythonTests/blob/master/Pandas/Test42p.py
+
+Example with plotting:
+refer: https://github.com/ajaykuma/PythonTests/blob/master/Pandas/pandas_Adv_ts_ucases_plot/Test1TSp.py
+
+%python
+dfT = pd.read_csv('https://raw.githubusercontent.com/ajaykuma/Datasets/master/a10.csv', parse_dates=['date'])
+
+%python
+dfT.head()
+
+%python
+
+def plot_dfT(dfT, x, y, title="", xlabel='Date', ylabel='Value'):
+   #plt.figure(figsize=(16,5), dpi=dpi)
+   plt.plot(x, y, color='tab:red')
+   plt.gca().set(title=title, xlabel=xlabel, ylabel=ylabel)
+   plt.show()
+
+%python
+plot_dfT(dfT, x=dfT.index, y=dfT.value, title='Monthly anti-diabetic drug sales in Australia from 1992 to 2008.') 
+
+ 
+
+
+
+

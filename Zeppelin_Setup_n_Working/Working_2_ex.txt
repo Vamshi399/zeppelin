@@ -1,0 +1,8 @@
+#Working with Spark's Dataframe API using Python
+--Reading different format files (csv, json, text, avro, orc, parquet)(from local FS/HDFS/other options)
+--Writing/saving dataframes (processed/unprocessed data) in different formats (on local FS/HDFS/other options)
+--performing transformations and actions
+--caching
+--saving processed output
+
+Examples:
